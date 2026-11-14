@@ -15,7 +15,7 @@ def load_and_harmonise():
     viirs = pd.read_csv("J1_VIIRS_C2_Global_24h.csv")
     viirs = viirs.rename(columns={'bright_ti4':'brightness', 'bright_ti5':'brightness_t5'})
     modis = modis.drop(columns=['version','bright_t31','satellite'], errors='ignore')
-    viirs = viirs.drop(columns=['version','bright_t31','satellite'], errors='ignore')
+    viirs = viirs.drop(columns=['version','satellite'], errors='ignore')  
     modis['confidence_level'] = pd.cut(modis['confidence'], bins=[-1,30,80,100], labels=[0,1,2]).astype(int)
     viirs['confidence_level'] = viirs['confidence'].map({'low':0,'nominal':1,'high':2})
     modis['daynight'] = modis['daynight'].map({'D':0,'N':1})
