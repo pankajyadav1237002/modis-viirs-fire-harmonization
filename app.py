@@ -12,8 +12,8 @@ st.title("🔥 Harmonisation of MODIS & VIIRS Hotspots")
 @st.cache_data
 def load_and_harmonise():
     cols = ['latitude','longitude','brightness','confidence','acq_date','acq_time','satellite','daynight']
-    modis = pd.read_csv("MODIS_C6_1_Global_24h.csv", usecols=cols, nrows=20000)
-    viirs = pd.read_csv("J1_VIIRS_C2_Global_24h.csv", usecols=cols, nrows=20000)
+    modis = pd.read_csv("MODIS_C6_1_Global_24h.csv", nrows=20000)
+    viirs = pd.read_csv("J1_VIIRS_C2_Global_24h.csv", nrows=20000)
     
     modis, viirs = load_data()
     viirs = viirs.rename(columns={'bright_ti4':'brightness', 'bright_ti5':'brightness_t5'})
