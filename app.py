@@ -15,7 +15,6 @@ def load_and_harmonise():
     modis = pd.read_csv("MODIS_C6_1_Global_24h.csv", nrows=20000)
     viirs = pd.read_csv("J1_VIIRS_C2_Global_24h.csv", nrows=20000)
     
-    modis, viirs = load_data()
     viirs = viirs.rename(columns={'bright_ti4':'brightness', 'bright_ti5':'brightness_t5'})
     modis = modis.drop(columns=['version','bright_t31','satellite'], errors='ignore')
     viirs = viirs.drop(columns=['version','satellite'], errors='ignore')  
