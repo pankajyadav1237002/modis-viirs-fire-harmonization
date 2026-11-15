@@ -13,7 +13,8 @@ def load_and_harmonise():
     # 20000 ki jagah 5000 hi lenge, crash isi se ho raha tha
     modis = pd.read_csv("MODIS_C6_1_Global_24h.csv", nrows=5000)
     viirs = pd.read_csv("J1_VIIRS_C2_Global_24h.csv", nrows=5000)
-
+    viirs = viirs.rename(columns={'bright_ti4': 'brightness'})
+    
     modis['confidence_level'] = pd.cut(modis['confidence'], bins=[-1,30,80,100], labels=[0,1,2]).astype(int)
     modis['daynight'] = modis['daynight'].map({'D':0,'N':1})
     modis['datetime'] = modis['acq_date'].astype(str) + ' ' + modis['acq_time'].astype(str).str.zfill(4)
